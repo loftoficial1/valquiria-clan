@@ -1,0 +1,278 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, sans-serif;
+}
+
+
+body{
+
+    background:
+
+    linear-gradient(
+        rgba(0,0,0,.85),
+        rgba(15,0,0,.92)
+    ),
+
+    url("assets/bg.jpg");
+
+    background-size:cover;
+
+    background-position:center;
+
+    background-attachment:fixed;
+
+    color:white;
+
+}
+
+
+
+/* HOME */
+
+.hero{
+
+    height:100vh;
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:center;
+
+    align-items:center;
+
+    text-align:center;
+
+    padding:20px;
+
+}
+
+
+
+.hero h1{
+
+    font-size:120px;
+
+    letter-spacing:5px;
+
+    margin-bottom:20px;
+
+    text-shadow:
+    0 0 20px rgba(255,255,255,.15);
+
+}
+
+
+
+.hero p{
+
+    font-size:28px;
+
+    color:#d0d0d0;
+
+    margin-bottom:60px;
+
+}
+
+
+
+/* BOTÕES */
+
+.buttons{
+
+    display:flex;
+
+    gap:25px;
+
+    flex-wrap:wrap;
+
+}
+
+
+.buttons a{
+
+    text-decoration:none;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+}
+
+
+
+/* TODOS NO MESMO ESTILO */
+
+.mainBtn,
+.secondBtn,
+.discordBtn{
+
+    width:230px;
+
+    height:70px;
+
+    border-radius:12px;
+
+    border:2px solid #ff003c;
+
+    background:rgba(255,0,60,.05);
+
+    color:#ff003c;
+
+    font-size:18px;
+
+    font-weight:bold;
+
+    letter-spacing:2px;
+
+    cursor:pointer;
+
+    box-shadow:
+        0 0 8px rgba(255,0,60,.4),
+        0 0 20px rgba(255,0,60,.2);
+
+    text-shadow:
+        0 0 8px rgba(255,0,60,.7);
+
+    transition:.3s;
+
+}
+
+
+
+/* HOVER */
+
+.mainBtn:hover,
+.secondBtn:hover,
+.discordBtn:hover{
+
+    background:#ff003c;
+
+    color:white;
+
+    transform:scale(1.05);
+
+    box-shadow:
+        0 0 15px #ff003c,
+        0 0 35px #ff003c,
+        0 0 60px rgba(255,0,60,.6);
+
+}
+
+
+
+/* PÁGINA SOBRE */
+
+.aboutPage{
+
+    min-height:100vh;
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:center;
+
+    align-items:center;
+
+    text-align:center;
+
+    padding:40px;
+
+}
+
+
+
+.aboutPage h1{
+
+    font-size:80px;
+
+    margin-bottom:30px;
+
+    text-shadow:
+    0 0 15px rgba(255,255,255,.15);
+
+}
+
+
+
+/* FOTO */
+
+.clanImage{
+
+    width:600px;
+
+    max-width:90%;
+
+    border-radius:15px;
+
+    margin-bottom:30px;
+
+    border:2px solid #ff003c;
+
+    box-shadow:
+        0 0 15px rgba(255,0,60,.3),
+        0 0 35px rgba(255,0,60,.15);
+
+}
+
+
+
+/* TEXTO */
+
+.aboutPage p{
+
+    width:700px;
+
+    max-width:90%;
+
+    line-height:1.8;
+
+    color:#d0d0d0;
+
+    margin-bottom:40px;
+
+    font-size:18px;
+
+}
+
+
+
+/* RESPONSIVO */
+
+@media(max-width:768px){
+
+    .hero h1{
+
+        font-size:70px;
+
+    }
+
+
+    .hero p{
+
+        font-size:20px;
+
+    }
+
+
+    .buttons{
+
+        flex-direction:column;
+
+        align-items:center;
+
+    }
+
+
+    .aboutPage h1{
+
+        font-size:50px;
+
+    }
+
+}
