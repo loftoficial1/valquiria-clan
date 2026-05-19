@@ -1,74 +1,53 @@
-const http = require("http")
-const fs = require("fs")
-const path = require("path")
+const express = require("express");
+const fs = require("fs");
+const cors = require("cors");
 
-const PORT = 3000
+const app = express();
 
+app.use(express.json());
 
-http.createServer((req,res)=>{
+// 🌍 permite GitHub acessar API
+app.use(cors({
+    origin: "https://loftoficial1.github.io/valquiria-clan/"
+}));
 
-    let file = "index.html"
+const MEMBERS_FILE = "./members.json";
 
+// =====================
+// MEMBERS API
+// =====================
 
-    if(req.url === "/sobre.html"){
-        file = "sobre.html"
-    }
+// GET
+app.get("/members", (req, res) => {
+    res.json(JSON.parse(fs.readFileSync(MEMBERS_FILE)));
+});
 
+// POST
+app.post("/members", (req, res) => {
+    const data = JSON.parse(fs.readFileSync(MEMBERS_FILE));
 
-    if(req.url === "/style.css"){
-        file = "style.css"
-    }
+    data.push({
+        id: Date.now(),
+        nick: req.body.nick,
+        cargo: req.body.cargo
+    });
 
+    fs.writeFileSync(MEMBERS_FILE, JSON.stringify(data, null, 2));
 
-    if(req.url.startsWith("/assets/")){
-        file = req.url
-    }
+    res.json({ ok: true });
+});
 
+// DELETE
+app.delete("/members/:id", (req, res) => {
+    let data = JSON.parse(fs.readFileSync(MEMBERS_FILE));
 
-    const filePath =
-    path.join(__dirname,file)
+    data = data.filter(m => m.id != req.params.id);
 
+    fs.writeFileSync(MEMBERS_FILE, JSON.stringify(data, null, 2));
 
-    fs.readFile(filePath,(err,data)=>{
+    res.json({ ok: true });
+});
 
-        if(err){
-
-            res.writeHead(404)
-
-            return res.end("404")
-
-        }
-
-
-        let type = "text/html"
-
-
-        if(file.endsWith(".css")){
-            type = "text/css"
-        }
-
-
-        if(
-            file.endsWith(".jpg")
-        ){
-            type = "image/jpeg"
-        }
-
-
-        res.writeHead(200,{
-            "Content-Type":type
-        })
-
-
-        res.end(data)
-
-    })
-
-
-}).listen(PORT,()=>{
-
-    console.log(
-    "VALK online http://localhost:3000"
-    )
-
-})
+app.listen(3000, () => {
+    console.log("API rodando em http://localhost:3000");
+});
